@@ -1,0 +1,51 @@
+<template>
+  <div class="layout-container">
+    <div class="header-section">
+      <Header />
+    </div>
+
+    <div class="sidebar-section">
+      <Sidebar />
+    </div>
+
+    <div class="main-section">
+      <Main />
+    </div>
+
+   
+
+  </div>
+</template>
+
+<script setup>
+  import Footer from "./Footer.vue";
+  import Header from "./Header.vue";
+  import Sidebar from "./Sidebar.vue";
+  import Main from "./Main.vue";
+</script>
+
+<style scoped>
+.layout-container{
+  display: grid;
+  grid-template-rows: minmax(min-content, 80px) auto;
+  grid-template-columns: minmax(min-content, 262px) auto;
+  grid-template-areas: "header header" "sidebar main";
+  block-size: 100vh;
+}
+
+.header-section{
+  grid-area: header;
+}
+
+.sidebar-section{
+  grid-area: sidebar;
+  background: var(--black-2);
+}
+
+.main-section{
+  grid-area: main;
+}
+
+
+
+</style>
