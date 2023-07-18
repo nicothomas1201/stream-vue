@@ -24,45 +24,43 @@ export default defineStore('streams', {
     }
   },
   actions: {
-    async fetchStreams(){
+    async setUpStreamsStates(){
       // get streams
-      this.streams = await getStreams()
+      await this.fetchStreams()
 
       // get profile by streams
+      await this.fetchUsers()
+
+      // obtener los primeros 5 canales de los primeros 5 usuarios
+      await this.fetchChannels()
+
+      // Agregar profile y stream_viewers al channel
+      this.addProfileToChannels()
+    },
+    async fetchStreams(){
+      this.streams = await getStreams()      
+    },
+    async fetchUsers(){
       const currentUserLoginList = this.streams.data.map( stream => stream.user_login)
       this.users = await Promise.all(
         currentUserLoginList.map( async user => {
           return await getUserData(user)
         })
       )
+    },
 
-      // obtener los primeros 5 canales de los primeros 5 usuarios
+    async fetchChannels(){
       let userIdList = this.getUserIds()
       this.channels = await getChannels(userIdList)
+    },
 
-      // Agregar profile y stream_viewers al channel
+    addProfileToChannels(){
       this.channels.forEach((channel, index) => {
         // tengo que arreglar esto porque puede que no vengan en el mismo orden
         // por efectos practicos lo hago de esta manera
         channel.profile = this.users[index]
         channel.viewers = formatViewersCount(this.streams.data[index].viewer_count)
       })
-
-
-
-      //obtener la informacion del game asi como el name (jus chatting etc)
-
-      // AL FINAL ES INNECESARIO PERO IGUAL DEJARE LA FUNCION EN API-SERVICES
-
-      // let gameidsList = this.getGameIdListByChannels()
-      // let games = await Promise.all(
-      //   gameidsList.map( async gameId => await getGameInfo(gameId))
-      // )
-      // this.channels.forEach( (channel, index) => {
-      //   channel.game_data = games[index]
-      // }) 
-
-      // console.log(this.channels)
     }
   }
 })

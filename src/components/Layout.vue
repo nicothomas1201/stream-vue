@@ -26,7 +26,7 @@
 
 
   const streamsStore = useStreamsStore()
-  await streamsStore.fetchStreams()
+  await streamsStore.setUpStreamsStates()
 
 </script>
 
