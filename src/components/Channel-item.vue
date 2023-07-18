@@ -1,9 +1,7 @@
 <template>
   <div class="channel-item">
     <div class="channel-details">
-      <div class="channel-avatar">
-        <img :src="channel.profile.profile_image_url"  width="32" height="32" :alt="channel.profile.login"/>
-      </div>
+      <ProfileAvatar :src="channel.profile.profile_image_url" :alt="channel.profile.login" />
       <div class="channel-text">
         <h3 class="title">{{ channel.broadcaster_name }}</h3>
         <span class="game-name">{{ channel.game_name }}</span>
@@ -18,6 +16,7 @@
 
 <script setup>
 import { toRefs } from "vue";
+import ProfileAvatar from "./Profile-avatar.vue"
 
 const props = defineProps({
   channel: Object
@@ -78,19 +77,4 @@ const { channel } = toRefs(props)
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
-.channel-avatar{
-  inline-size: 32px;
-  block-size: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.channel-avatar > img{
-  vertical-align: middle;
-  inline-size: 100%;
-  block-size: 100%;
-}
-
-
 </style>

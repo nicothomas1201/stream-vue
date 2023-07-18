@@ -6,9 +6,8 @@
       <img :src="url" width="336" height="188" />
     </div>
     <div class="stream-details">
-      <div class="profile-avatar">
-        <img :src="user.profile_image_url"  width="32" height="32" :alt="user.login"/>
-      </div>
+      
+      <ProfileAvatar :src="user.profile_image_url" :alt="user.login" />
       <div class="text">
         <h2 class="stream-title">{{ stream.title }}</h2>
         <h3 class="profile-name">{{ user.display_name }}</h3>
@@ -32,6 +31,7 @@
   import LanguageTag from "./Language-tag.vue";
   import LiveBadge from "./Live-badge.vue";
   import ViewersCount from "./Viewers-count.vue";
+  import ProfileAvatar from "./Profile-avatar.vue";
 
   const props = defineProps({
     stream: Object,
@@ -79,19 +79,6 @@
 .stream-details{
   display: flex;
   gap: 8px;
-}
-
-.stream-details .profile-avatar{
-  max-inline-size: 32px;
-  inline-size: 100%;
-  block-size: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-
-.profile-avatar > img{
-  vertical-align: middle;
 }
 
 .tags-section{
