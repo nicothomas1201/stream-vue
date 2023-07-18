@@ -1,6 +1,10 @@
 <template>
   <div class="stream-item">
-    <img class="stream-thumbnail" :src="url" width="336" height="188" />
+    <div class="stream-thumbnail">
+      <LiveBadge :text="stream.type" />
+      <ViewersCount :viewers="stream.viewer_count" />
+      <img :src="url" width="336" height="188" />
+    </div>
     <div class="stream-details">
       <div class="profile-avatar">
         <img :src="user.profile_image_url"  width="32" height="32" :alt="user.login"/>
@@ -24,8 +28,10 @@
 
 <script setup>
   import { toRefs } from "vue"
-  import { getThumbnailUrl } from "../utils"
+  import { getThumbnailUrl } from "../api-services"
   import LanguageTag from "./Language-tag.vue";
+  import LiveBadge from "./Live-badge.vue";
+  import ViewersCount from "./Viewers-count.vue";
 
   const props = defineProps({
     stream: Object,
@@ -47,7 +53,15 @@
 }
 
 .stream-item .stream-thumbnail{
-  align-self: center;
+  inline-size: 100%;
+  min-inline-size: 336px;
+  position: relative;
+}
+
+.stream-item .stream-thumbnail > img{
+  object-fit: contain;
+  inline-size: 100%;
+  block-size: 100%;
 }
 .stream-item .stream-title{
   font: var(--body2-bold);

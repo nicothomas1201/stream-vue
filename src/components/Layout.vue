@@ -12,6 +12,9 @@
       <Main />
     </div>
 
+    <Modal />
+
+
    
 
   </div>
@@ -21,6 +24,7 @@
   import Header from "./Header.vue";
   import Sidebar from "./Sidebar.vue";
   import Main from "./Main.vue";
+  import Modal from "./Modal.vue";
   import useStreamsStore from '../stores/streams.store.js'
 
   const streamsStore = useStreamsStore()

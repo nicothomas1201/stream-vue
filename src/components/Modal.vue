@@ -1,13 +1,18 @@
 <template>
   <Teleport to="body">
-    <div class="modal-container">
+    <div v-show="show" class="modal-container">
       <Footer />
     </div>
   </Teleport>
 </template>
 
 <script setup>
+  import { storeToRefs } from 'pinia'
   import Footer from './Footer.vue'
+  import useModalStore from '../stores/modal.store'
+
+  const modalStore = useModalStore()
+  const { show } = storeToRefs(modalStore)
 </script>
 
 <style scoped>

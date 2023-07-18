@@ -1,6 +1,6 @@
 <script setup>
   import { defineAsyncComponent } from 'vue';
-  import Modal from '../components/Modal.vue';
+  import Loading from '../components/Loading.vue';
 
   const Layout = defineAsyncComponent(() => import('../components/Layout.vue'))
   
@@ -12,10 +12,9 @@
       <Layout />
     </template>
     <template #fallback>
-      Loading
+      <Loading />
     </template>
   </Suspense>
-  <Modal />
 </template>
 
 

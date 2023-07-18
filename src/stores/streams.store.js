@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getStreams, getUserData } from "../utils"
+import { getStreams, getUserData } from "../api-services"
 
 export default defineStore('streams', {
   state: () => ({

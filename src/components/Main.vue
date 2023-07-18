@@ -5,7 +5,6 @@
       :key="stream.id"
       :stream="stream"
       :user="streamsStore.getUserByLogin(stream.user_login)"
-       
     />
   </div>
   
@@ -18,7 +17,6 @@
 
   const streamsStore = useStreamsStore()
   const { streams } = storeToRefs(streamsStore)
-  console.log(streams.value.data)
 </script>
 
 <style scoped>
@@ -28,7 +26,11 @@
   grid-template-rows: repeat(auto-fill, max-content);
   grid-gap: 24px;
   padding: 24px;
-  place-content: center;
-  place-items: center;
+  /* place-content: center; */
+  /* place-items: center; */
+  overflow: auto;
+  block-size: calc(100vh - var(--header-block-size));
+  box-sizing: border-box;
+
 }
 </style>
