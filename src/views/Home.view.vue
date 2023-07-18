@@ -1,10 +1,20 @@
 <script setup>
-  import Layout from '../components/Layout.vue';
+  import { defineAsyncComponent } from 'vue';
   import Modal from '../components/Modal.vue';
+
+  const Layout = defineAsyncComponent(() => import('../components/Layout.vue'))
+  
 </script>
 
 <template>
-  <Layout />
+  <Suspense>
+    <template #default>
+      <Layout />
+    </template>
+    <template #fallback>
+      Loading
+    </template>
+  </Suspense>
   <Modal />
 </template>
 

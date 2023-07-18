@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL, CLIENT_ID, API_AUTH_URL } from "../config";
-import { getApiAuthorization } from "../utils/api-authorizathion";
+import { getApiAuthorization } from "../utils";
 
 
 export async function createTwitchRequest(){

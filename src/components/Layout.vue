@@ -18,10 +18,13 @@
 </template>
 
 <script setup>
-  import Footer from "./Footer.vue";
   import Header from "./Header.vue";
   import Sidebar from "./Sidebar.vue";
   import Main from "./Main.vue";
+  import useStreamsStore from '../stores/streams.store.js'
+
+  const streamsStore = useStreamsStore()
+  await streamsStore.fetchStreams()
 </script>
 
 <style scoped>
