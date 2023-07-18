@@ -1,32 +1,33 @@
 <template>
-  <div class="stream-item">
-    <div class="stream-thumbnail">
-      <LiveBadge :text="stream.type" />
-      <ViewersCount :viewers="stream.viewer_count" />
-      <img :src="url" width="336" height="188" />
-    </div>
-    <div class="stream-details">
-      
-      <ProfileAvatar :src="user.profile_image_url" :alt="user.login" />
-      <div class="text">
-        <h2 class="stream-title">{{ stream.title }}</h2>
-        <h3 class="profile-name">{{ user.display_name }}</h3>
-        <div class="tags-section">
-          <LanguageTag
-            v-for="(tag, i) in stream.tags.slice(0, 3)"
-            :key="i"
-            :language="tag" 
-          />
-
+    <div @click="handleClickStream" class="stream-item">
+      <div class="stream-thumbnail">
+        <LiveBadge :text="stream.type" />
+        <ViewersCount :viewers="stream.viewer_count" />
+        <img :src="url" width="336" height="188" />
+      </div>
+      <div class="stream-details">
+        
+        <ProfileAvatar :src="user.profile_image_url" :alt="user.login" />
+        <div class="text">
+          <h2 class="stream-title">{{ stream.title }}</h2>
+          <h3 class="profile-name">{{ user.display_name }}</h3>
+          <div class="tags-section">
+            <LanguageTag
+              v-for="(tag, i) in stream.tags.slice(0, 3)"
+              :key="i"
+              :language="tag" 
+            />
+  
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 
 <script setup>
   import { toRefs } from "vue"
+  import { useRouter } from "vue-router"
   import { getThumbnailUrl } from "../utils"
   import LanguageTag from "./Language-tag.vue";
   import LiveBadge from "./Live-badge.vue";
@@ -37,9 +38,16 @@
     stream: Object,
     user: Object
   })
+
+  const router = useRouter()
   const { stream, user } = toRefs(props)
   const thumbnail = stream.value.thumbnail_url
   let url = getThumbnailUrl(thumbnail)
+
+  function handleClickStream(){
+    console.log(stream.value)
+    router.push(`/${stream.value.user_login}`)
+  }
   
 
 </script>

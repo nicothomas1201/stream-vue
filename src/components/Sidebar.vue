@@ -52,6 +52,7 @@
   }
   const streamStore = useStreamsStore()
   const { channels } = storeToRefs(streamStore)
+  console.log(channels.value)
 </script>
 
 <style scoped>

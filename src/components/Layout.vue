@@ -10,7 +10,7 @@
       </div>
 
     <div class="main-section">
-      <Main />
+      <router-view />
     </div>
 
     <Modal />

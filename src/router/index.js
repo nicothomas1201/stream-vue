@@ -8,7 +8,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/Home.view.vue')
+      component: () => import('../views/Home.view.vue'),
+      children: [
+        {
+          path: "/",
+          component: () => import('../components/Main.vue')
+        }, 
+        {
+          path: ':channelName',
+          component: () => import('../views/Stream.view.vue'),
+          props: true,
+        }
+      ]
     },
     
   ]
