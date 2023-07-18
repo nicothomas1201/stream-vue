@@ -22,7 +22,7 @@
   --body2-regular: 400 0.875rem/1.5rem Inter; 
   --caption-regular: 400 0.75rem/1rem Inter; 
   --caption-bold: 700 0.75rem/1rem Inter; 
-  --header-block-size: 83.88px;
+  --header-block-size: 80px;
 }
 
 body,

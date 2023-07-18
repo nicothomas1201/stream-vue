@@ -20,6 +20,8 @@
   align-items: center;
   justify-content: space-between;
   padding-inline: 16px 40px;
+  box-sizing: border-box;
+  max-block-size: 80px;
 }
 
 .title{

@@ -28,7 +28,7 @@
 
 <script setup>
   import { toRefs } from "vue"
-  import { getThumbnailUrl } from "../api-services"
+  import { getThumbnailUrl } from "../utils"
   import LanguageTag from "./Language-tag.vue";
   import LiveBadge from "./Live-badge.vue";
   import ViewersCount from "./Viewers-count.vue";
@@ -40,7 +40,6 @@
   const { stream, user } = toRefs(props)
   const thumbnail = stream.value.thumbnail_url
   let url = getThumbnailUrl(thumbnail)
-  console.log(stream.value)
   
 
 </script>
