@@ -20,7 +20,6 @@
 <script setup>
   import Header from "./Header.vue";
   import Sidebar from "./Sidebar.vue";
-  import Main from "./Main.vue";
   import Modal from "./Modal.vue";
   import useStreamsStore from '../stores/streams.store.js'
 
@@ -34,7 +33,7 @@
 .layout-container{
   display: grid;
   grid-template-rows: minmax(50px, 80px) auto;
-  grid-template-columns: max-content auto;
+  grid-template-columns: min-content auto;
   grid-template-areas: "header header" "sidebar main";
   block-size: 100vh;
 }

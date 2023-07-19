@@ -1,10 +1,13 @@
 <template>
-  <TwitchChat :channel-name="channelName" />
+  <div>
+    <TwitchStreamVideo :channel-name="channelName" />
+  </div>
+
 </template>
 
 <script setup>
 import { toRefs } from "vue"
-import TwitchChat from "../components/Twitch-chat.vue";
+import TwitchStreamVideo from "../components/Twitch-stream-video.vue";
 
 const props = defineProps({
   channelName: String

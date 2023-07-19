@@ -18,7 +18,7 @@
     </ChannelList>
   </article>
 
-  <article v-else class="sidebar">
+  <article v-else class="sidebar close">
     <button class="button-icon close" @click="showSidebar">
       <ShareRigth  :size="24" />
     </button>
@@ -57,9 +57,13 @@
 
 <style scoped>
 .sidebar{
-  inline-size: 100%;
+  inline-size: 262px;
   padding: 16px;
   box-sizing: border-box;
+}
+
+.sidebar.close{
+  inline-size: 64px;
 }
 
 .list-close{
