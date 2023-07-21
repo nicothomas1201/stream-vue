@@ -11,7 +11,7 @@
         <div class="text">
           <h2 class="stream-title">{{ stream.title }}</h2>
           <h3 class="profile-name">{{ user.display_name }}</h3>
-          <div class="tags-section">
+          <div class="tags-section" v-if="stream.tags">
             <LanguageTag
               v-for="(tag, i) in stream.tags.slice(0, 3)"
               :key="i"

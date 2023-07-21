@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container">
+  <div v-if="!response.error" class="layout-container">
     <div class="header-section">
       <Header />
     </div>
@@ -15,6 +15,10 @@
 
     <Modal />
   </div>
+
+  <div v-else>
+    Ha ocurrido un error, intentalo mas tarde
+  </div>
 </template>
 
 <script setup>
@@ -25,7 +29,11 @@
 
 
   const streamsStore = useStreamsStore()
-  await streamsStore.setUpStreamsStates()
+  const response = await streamsStore.setUpStreamsStates()
+
+
+
+
 
 </script>
 

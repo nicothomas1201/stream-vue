@@ -21,21 +21,44 @@ export default defineStore('streams', {
 
     getGameIdListByChannels: (state) => () => {
       return state.channels.map(channel => channel.game_id)
+    }, 
+
+    getCurrentStream: (state) => (channelName) => {
+      return state.streams.data.find( stream => {
+        return stream.user_login === channelName.value
+      })
     }
   },
   actions: {
     async setUpStreamsStates(){
-      // get streams
-      await this.fetchStreams()
+      try{
+        // get streams
+        await this.fetchStreams()
+  
+        // get profile by streams
+        await this.fetchUsers()
+  
+        // obtener los primeros 5 canales de los primeros 5 usuarios
+        await this.fetchChannels()
+  
+        // Agregar profile y stream_viewers al channel
+        this.addProfileToChannels()
 
-      // get profile by streams
-      await this.fetchUsers()
+        return {
+          error: false,
+          message: 'Todo bien'
+        }
+      } catch(err){
+        this.streams = [{
+          error: true,
+          message: err.message
+        }]
 
-      // obtener los primeros 5 canales de los primeros 5 usuarios
-      await this.fetchChannels()
-
-      // Agregar profile y stream_viewers al channel
-      this.addProfileToChannels()
+        return {
+          error: true,
+          message: err.message
+        }
+      }
     },
     async fetchStreams(){
       this.streams = await getStreams()      
@@ -53,6 +76,10 @@ export default defineStore('streams', {
       let userIdList = this.getUserIds()
       this.channels = await getChannels(userIdList)
     },
+
+
+
+    
 
     addProfileToChannels(){
       this.channels.forEach((channel, index) => {
